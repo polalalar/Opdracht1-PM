@@ -312,11 +312,9 @@ int main()
 	}
 	
 
-	srand(0);
+	srand(jaarLeeftijd);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
-	num1 = 42;
-	num2 = 17;
 
 	int correct_result = num1 * num2;
 	int epsilon = correct_result * 0.1;
