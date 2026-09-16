@@ -239,7 +239,7 @@ int main()
 		dagVerschil++;
 	}
 
-	geboorteDagIndex = (dagVerschil + 1) % 7; // + 1 om start op dinsdag te hebben, want 1901 1jan is op een dinsdag
+	geboorteDagIndex = (dagVerschil + 1) % 7; // + 1 om start op dinsdag te hebben, want 1901 1 jan is op een dinsdag
 
 	cout << geboorteDagIndex << endl;
 
