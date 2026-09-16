@@ -312,7 +312,7 @@ int main()
 	}
 
 
-*/
+
 	//////
 	// De "echte test"
 	//  - Want wie weet zn geboortedag vd week nou niet???
@@ -321,7 +321,7 @@ int main()
 
 	// Note: mogen variabelen wel als string??
 	//  - Letters moeten worden ingelezen als char (en niet str)
-	/*
+	
 	if (jaarLeeftijd >= 30) {
 		persoonlijkVNW = "u"
 		bezittelijkVNW = "uw"
