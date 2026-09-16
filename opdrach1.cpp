@@ -14,7 +14,7 @@ using namespace std;
 
 // Opdracht 1 - Programmeermethoden
 // Jens van der Linden & Thymen Roosenbrand
-// s5205212 & s0000000
+// s5205212 & s5225752
 // Compiled with: g++ 13.3.0
 
 
@@ -232,7 +232,8 @@ int main()
 	if (geboorteMaand > 10) dagVerschil += 31;
 	if (geboorteMaand > 11) dagVerschil += 30;
 	if (geboorteMaand > 12) dagVerschil += 31;
-	if (geboorteJaar % 4 == 0 and geboorteMaand >= 3) {
+	cout << geboorteMaand << endl;
+	if (geboorteJaar % 4 == 0 and geboorteMaand >= 3) {//Zodat 29 feb ook meetelt als een dag
 		dagVerschil++;
 	}
 
