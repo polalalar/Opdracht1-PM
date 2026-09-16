@@ -57,6 +57,9 @@ int main()
 	//  - years: future, 0 < month < 13
 	//  - check before age checks to ensure right error message
 
+
+
+
 	// Input variabele
 	int geboorteJaar = 0;
 
@@ -231,13 +234,12 @@ int main()
 	if (geboorteMaand > 9) dagVerschil += 30;
 	if (geboorteMaand > 10) dagVerschil += 31;
 	if (geboorteMaand > 11) dagVerschil += 30;
-	if (geboorteMaand > 12) dagVerschil += 31;
-	cout << geboorteMaand << endl;
+
 	if (geboorteJaar % 4 == 0 and geboorteMaand >= 3) {//Zodat 29 feb ook meetelt als een dag
 		dagVerschil++;
 	}
 
-	geboorteDagIndex = (dagVerschil + 1) % 7; // + 1 om start op maandag te hebben
+	geboorteDagIndex = (dagVerschil + 1) % 7; // + 1 om start op dinsdag te hebben, want 1901 1jan is op een dinsdag
 
 	cout << geboorteDagIndex << endl;
 
@@ -250,7 +252,7 @@ int main()
 			" (alleen de eerste letter)" << endl << "> ";
 	cin >> geboorteDagLetter;
 
-	// Note: might split up days for readability
+	// Note: split up days for readability
 	//  - both for m/w/v as for di/do/za/zo
 
 	// dag = m/w/v & dag klopt met berekende dag
@@ -310,7 +312,7 @@ int main()
 	}
 
 
-
+*/
 	//////
 	// De "echte test"
 	//  - Want wie weet zn geboortedag vd week nou niet???
@@ -328,6 +330,30 @@ int main()
 		persoonlijkVNW = "jij"
 		bezittelijkVNW = "jouw"
 	}
-	*/
+	
+	srand(0);
+	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
+	int num2 = (rand() % 90) + 10;
+	num1 = 42;
+	num2 = 17;
+
+	int correct_result = num1 * num2;
+	int epsilon = correct_result * 0.1;
+	int upper_bound = correct_result + epsilon;
+	int lower_bound = correct_result - epsilon;
+
+	int user_guess;
+	cout << "What is " << num1 << " x " << num2 << "?" << endl << ">";
+	cin >> user_guess;
+
+	if (user_guess == correct_result){
+		cout << "Perfect!" << endl;
+	}
+	else if(user_guess >= lower_bound && user_guess <= upper_bound){
+		cout << "Correct!" << endl;
+	}
+	else{
+		cout << "FALSE" << endl;
+	}
 	return 0;
 } //main
