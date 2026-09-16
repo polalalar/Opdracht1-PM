@@ -310,27 +310,8 @@ int main()
 		 	 << endl;
 		return 3;
 	}
-
-
-
-	//////
-	// De "echte test"
-	//  - Want wie weet zn geboortedag vd week nou niet???
-	//
-
-
-	// Note: mogen variabelen wel als string??
-	//  - Letters moeten worden ingelezen als char (en niet str)
 	
-	if (jaarLeeftijd >= 30) {
-		persoonlijkVNW = "u"
-		bezittelijkVNW = "uw"
-	}
-	else {
-		persoonlijkVNW = "jij"
-		bezittelijkVNW = "jouw"
-	}
-	
+
 	srand(0);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
@@ -343,7 +324,27 @@ int main()
 	int lower_bound = correct_result - epsilon;
 
 	int user_guess;
-	cout << "What is " << num1 << " x " << num2 << "?" << endl << ">";
+	cout << "  " << num1 << endl;
+	cout << "  " << num2 << " X" << endl;
+	cout << "  --" << endl;
+	//Not sure if this is what we need to do
+	int addnum2 = num1 * (num2 / 10);
+	addnum2 *= 10;
+	int addnum1 = correct_result - addnum2;
+	if (addnum1 < 1000){ cout << " "; }
+	if (addnum1 < 100){ cout << " "; }
+	if (addnum1 < 10){ cout << " "; }
+	cout << addnum1 << endl;
+	if (addnum2 < 1000){ cout << " "; }
+	cout << addnum2 << " +" << endl;
+
+	if (correct_result < 1000){
+		cout << " ---" << endl;
+		cout << " "; //space so the user can fill in the 3 digit cleanly
+	}
+	else{
+		cout << "----" << endl;
+	}
 	cin >> user_guess;
 
 	if (user_guess == correct_result){
