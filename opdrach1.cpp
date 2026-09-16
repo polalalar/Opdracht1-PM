@@ -312,9 +312,15 @@ int main()
 	}
 	
 
-	srand(jaarLeeftijd);
+	srand(dagVerschil);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
+	if (num2 % 10 == 0){//Reduces the odds of the num1 in the counting problem to be 0
+		int temp = 0;
+		temp = num1;
+		num1 = num2;
+		num2 = temp;
+	}
 
 	int correct_result = num1 * num2;
 	int epsilon = correct_result * 0.1;
