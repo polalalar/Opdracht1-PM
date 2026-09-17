@@ -68,20 +68,20 @@ int main()
 	cin >> geboorteJaar;
 
 	if (geboorteJaar > huidigJaar){
-		cout << "\033[31mJe bent nog niet geboren!\033[0m" << endl;
+		cout << "Je bent nog niet geboren!" << endl;
 		return 1;
 	} // if
 
 	// Leeftijdcheck - jonger
 	if (huidigJaar - geboorteJaar < 10) {
-		cout << "\033[31mJe bent niet oud genoeg!\033[0m" << endl;
+		cout << "Je bent niet oud genoeg!" << endl;
 		return 1;
 	} // if
 
 	// Leeftijdcheck - ouder
 	if (huidigJaar - geboorteJaar > 100) {
-		cout << "\033[31mJe bent te oud!\033[0m" << endl;
-		return 1;
+		cout << "Je bent te oud!" << endl;
+		return 2;
 	} // if
 
 
@@ -94,22 +94,22 @@ int main()
 
 	// Validiteitcheck
 	if (geboorteMaand <= 0 or geboorteMaand >= 13) {
-		cout << "\033[31mDit is geen valide maand!\033[0m" << 
+		cout << "Dit is geen valide maand!" << 
 		endl;
 	} // if
 
 	// Leeftijdcheck - jonger
 	if (huidigJaar - geboorteJaar == 10 and 
 	    geboorteMaand > huidigeMaand) {
-		cout << "\033[31mJe bent niet oud genoeg!\033[0m" << endl;
+		cout << "Je bent niet oud genoeg!" << endl;
 		return 1;
 	} // if
 
 	// Leeftijdcheck - ouder
 	if (huidigJaar - geboorteJaar == 100 and 
 	    geboorteMaand < huidigeMaand) {
-		cout << "\033[31mJe bent te oud!\033[0m" << endl;
-		return 1;
+		cout << "Je bent te oud!" << endl;
+		return 2;
 	} // if
 	
 
@@ -148,7 +148,7 @@ int main()
 	if (huidigJaar - geboorteJaar == 10 and 
 	    geboorteMaand == huidigeMaand and
 	    geboorteDag > huidigeDag) {
-		cout << "\033[31mJe bent niet oud genoeg!\033[0m" << endl;
+		cout << "Je bent niet oud genoeg!" << endl;
 		return 1;
 	} // if
 
@@ -156,18 +156,18 @@ int main()
 	if (huidigJaar - geboorteJaar == 100 and 
 	    geboorteMaand == huidigeMaand and
 	    geboorteDag <= huidigeDag) {
-		cout << "\033[31mJe bent te oud!\033[0m" << endl;
-		return 1;
+		cout << "Je bent te oud!" << endl;
+		return 2;
 	} // if
 
 	//Check of datum valide is
 	if (geboorteDag < 0){
-		cout << "\033[31mDit is geen valide dag!\033[0m" << endl;
+		cout << "Dit is geen valide dag!" << endl;
 		return 1;
 	} // if
 	
 	if (geboorteDag > maxGeboorteDag){
-		cout << "\033[31mDit is geen valide dag!\033[0m" << endl;
+		cout << "Dit is geen valide dag!" << endl;
 		return 1;
 	} // if
 
@@ -319,14 +319,14 @@ int main()
 	
 	// Invalide/incorrecte dag van de week
 	else {
-		cout << "\033[31mDit is niet de dag waarop je geboren bent!"
-			 << "(of geen valide dag)\033[0m"
+		cout << "Dit is niet de dag waarop je geboren bent!"
+			 << "(of geen valide dag)"
 		 	 << endl;
 		return 1;
 	}
 	
-
-	srand(dagVerschil);
+	bool user_oud = false;
+	srand(0);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
 	if (num2 % 10 == 0){//Reduces the odds of the num1 in the counting problem to be 0
@@ -365,14 +365,48 @@ int main()
 	}
 	cin >> user_guess;
 
-	if (user_guess == correct_result){
-		cout << "Perfect!" << endl;
+	if(user_guess >= lower_bound && user_guess <= upper_bound){//Goed geraden
+		cout << "Je bent op een exacte studie toegelaten!" << endl;
+		return 0;
 	}
-	else if(user_guess >= lower_bound && user_guess <= upper_bound){
-		cout << "Correct!" << endl;
+	else{//Niet goed geraden
+		cout << "Een kunst / literatuur opleiding past beter bij ";
+		if (user_oud){
+			cout << "u" << endl;
+
+			cout << "Wie van de Beatles deelt een naam met meneer Boole?" << endl;
+			cout << "A: George Harrison" << endl;
+			cout << "B: John Lennon " << endl;
+			cout << "C: Ringo Starr" << endl;
+			cout << "D: Paul McCartney" << endl;
+			cout << "> ";
+		}
+		else{
+			cout << "jou" << endl;
+
+			cout << "Welke letter is geen programeer taal?" << endl;
+			cout << "A: A" << endl;
+			cout << "B: B" << endl;
+			cout << "C: C" << endl;
+			cout << "D: D" << endl;
+			cout << "> ";
+		}
 	}
-	else{
-		cout << "FALSE" << endl;
+	char answer = 'a';
+	cin >> answer;
+
+	if (user_oud){
+		cout << "U ";
+	}else{
+		cout << "Jij ";
+	}
+	if (answer == 'a' or answer == 'A'){
+		cout << "bent geschikt voor een kunst / literatuur studie op de universiteit!" << endl;
+		return 0;
+	}else{
+		
+		cout << "bent niet geschikt voor een universitaire studie :(" << endl;
+		return 0;
 	}
 	return 0;
 } //main
