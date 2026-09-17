@@ -312,7 +312,7 @@ int main()
 	}
 	
 */
-	bool user_oud = true;
+	bool user_oud = false;
 	srand(0);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
@@ -379,24 +379,19 @@ int main()
 			cout << "> ";
 		}
 	}
-	char answer = 'b';
+	char answer = 'a';
 	cin >> answer;
 
-
-	if (answer == 'b' or answer == 'B'){
-		if (user_oud){
-			cout << "u ";
-		}else{
-		cout << "jij ";
-		}
+	if (user_oud){
+		cout << "U ";
+	}else{
+		cout << "Jij ";
+	}
+	if (answer == 'a' or answer == 'A'){
 		cout << "bent geschikt voor een kunst / literatuur studie op de universiteit!" << endl;
 		return 0;
 	}else{
-		if (user_oud){
-			cout << "u ";
-		}else{
-			cout << "jij ";
-		}
+		
 		cout << "bent niet geschikt voor een universitaire studie :(" << endl;
 		return 0;
 	}
