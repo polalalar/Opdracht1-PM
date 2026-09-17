@@ -332,7 +332,10 @@ int main()
 	}
 	
 	bool user_oud = false;
-	srand(0);
+	if (jaarLeeftijd >= 30){
+		user_oud = true;
+	}
+	srand(dagVerschil);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
 	if (num2 % 10 == 0){//Reduces the odds of the num1 in the counting problem to be 0
