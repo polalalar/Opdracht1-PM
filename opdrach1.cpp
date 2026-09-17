@@ -362,8 +362,8 @@ int main()
 			cout << "u" << endl;
 
 			cout << "Wie van de Beatles deelt een naam met meneer Boole?" << endl;
-			cout << "A: John Lennon " << endl;
-			cout << "B: George Harrison" << endl;
+			cout << "A: George Harrison" << endl;
+			cout << "B: John Lennon " << endl;
 			cout << "C: Ringo Starr" << endl;
 			cout << "D: Paul McCartney" << endl;
 			cout << "> ";
@@ -371,11 +371,11 @@ int main()
 		else{
 			cout << "jou" << endl;
 
-			cout << "Wie van de Beatles deelt een naam met meneer Boole?" << endl;
-			cout << "A: John Lennon " << endl;
-			cout << "B: George Harrison" << endl;
-			cout << "C: Ringo Starr" << endl;
-			cout << "D: Paul McCartney" << endl;
+			cout << "Welke letter is geen programeer taal?" << endl;
+			cout << "A: A" << endl;
+			cout << "B: B" << endl;
+			cout << "C: C" << endl;
+			cout << "D: D" << endl;
 			cout << "> ";
 		}
 	}
