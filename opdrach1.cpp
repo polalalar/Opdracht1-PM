@@ -70,7 +70,8 @@ int main()
 	if (geboorteJaar > huidigJaar){
 		cout << "\033[31mJe bent nog niet geboren!\033[0m" << endl;
 		return 1;
-	}
+	} // if
+
 	// Leeftijdcheck - jonger
 	if (huidigJaar - geboorteJaar < 10) {
 		cout << "\033[31mJe bent niet oud genoeg!\033[0m" << endl;
@@ -80,7 +81,7 @@ int main()
 	// Leeftijdcheck - ouder
 	if (huidigJaar - geboorteJaar > 100) {
 		cout << "\033[31mJe bent te oud!\033[0m" << endl;
-		return 2;
+		return 1;
 	} // if
 
 
@@ -90,6 +91,12 @@ int main()
 	// Geboortemaand input
 	cout << "Wat is je geboortemaand? (1-12)" << endl << "> ";
 	cin >> geboorteMaand;
+
+	// Validiteitcheck
+	if (geboorteMaand <= 0 or geboorteMaand >= 13) {
+		cout << "\033[31mDit is geen valide maand!\033[0m" << 
+		endl;
+	} // if
 
 	// Leeftijdcheck - jonger
 	if (huidigJaar - geboorteJaar == 10 and 
@@ -102,38 +109,41 @@ int main()
 	if (huidigJaar - geboorteJaar == 100 and 
 	    geboorteMaand < huidigeMaand) {
 		cout << "\033[31mJe bent te oud!\033[0m" << endl;
-		return 2;
+		return 1;
 	} // if
 	
 
+	// Maak een range voor de geboortedag (e.g. 1-30)
+	int maxGeboorteDag = 31;
+
+	if (
+		geboorteMaand == 4 or // apr
+		geboorteMaand == 6 or // jun
+		geboorteMaand == 9 or // sept
+		geboorteMaand == 11   // nov
+		) {
+			maxGeboorteDag = 30;
+	} // if
+	else if (geboorteMaand == 2) { // februari
+		if (geboorteJaar % 4 == 0) { // schrikkeljaar, dus 29 dagen
+			maxGeboorteDag = 29;
+		}
+		else {
+			maxGeboorteDag = 28;
+		}
+	} // else if
+
+	// De andere maanden zijn al 31 en hoeven niet aangepast te worden
+
+
 	// Input variabele
 	int geboorteDag = 0;
-
-	int maxGeboorteDag = 31;
-	if (geboorteMaand == 2){//feb
-		maxGeboorteDag = 28;
-		if (geboorteJaar % 4 == 0){//schrikkeljaar
-			maxGeboorteDag++;
-		}
-	}
-	else{
-		//Maanden met 31 dagen: jan(1),maart(3),mei(5),juli(7),augustus(8) okotober (10) december(12)
-		//Maanden groter dan 7.5 zijn even
-		int maandGetal = geboorteMaand;
-		if (maandGetal > 7){//Maakt augustus 8->9
-			maandGetal++;
-		}
-		if (maandGetal % 2 == 0) {//even = 30 dagen
-			maxGeboorteDag = 30;
-		}
-	}
 
 	// Geboortedag input
 	cout << "Wat is je geboortedag? (1-" << maxGeboorteDag << ")" << endl << "> ";
 	cin >> geboorteDag;
 
 	
-
 	// Leeftijdcheck - jonger
 	if (huidigJaar - geboorteJaar == 10 and 
 	    geboorteMaand == huidigeMaand and
@@ -147,18 +157,21 @@ int main()
 	    geboorteMaand == huidigeMaand and
 	    geboorteDag <= huidigeDag) {
 		cout << "\033[31mJe bent te oud!\033[0m" << endl;
-		return 2;
+		return 1;
 	} // if
-	//Check of datum valid is
+
+	//Check of datum valide is
 	if (geboorteDag < 0){
-		cout << "\033[31mNiet een dag in 1-"<< maxGeboorteDag << "\033[0m" << endl;
-		return 3;
-	}
+		cout << "\033[31mDit is geen valide dag!\033[0m" << endl;
+		return 1;
+	} // if
 	
 	if (geboorteDag > maxGeboorteDag){
-		cout << "\033[31mNiet een dag in 1-" << maxGeboorteDag << "\033[0m" << endl;
-		return 3;
-	}
+		cout << "\033[31mDit is geen valide dag!\033[0m" << endl;
+		return 1;
+	} // if
+
+
 
 	////////
 	// Leeftijd in jaren/maanden
@@ -169,7 +182,7 @@ int main()
 	// Bereken leeftijd in jaren en maanden
 	int maandLeeftijd = (huidigJaar - geboorteJaar) * 12
 		+ (huidigeMaand - geboorteMaand)
-		+ (huidigeDag <= geboorteDag) - 1;
+		+ (huidigeDag <= geboorteDag);
 		// Check of een volledige maand in dagen al voorbij is
 		// Een boolean wordt hier gezien als een integer door de code
 	int jaarLeeftijd = maandLeeftijd / 12;
@@ -177,7 +190,7 @@ int main()
 	// Display leeftijd in jaren en maanden
 	cout << "Je bent " << 
 			jaarLeeftijd << " jaar en " <<
-			(maandLeeftijd-jaarLeeftijd*12) << " maanden; " <<
+			(maandLeeftijd-(jaarLeeftijd*12)) << " maanden; " <<
 			maandLeeftijd << " maanden oud." << endl;
 
 
@@ -235,11 +248,12 @@ int main()
 	if (geboorteMaand > 10) dagVerschil += 31;
 	if (geboorteMaand > 11) dagVerschil += 30;
 
-	if (geboorteJaar % 4 == 0 and geboorteMaand >= 3) {//Zodat 29 feb ook meetelt als een dag
+	if (geboorteJaar % 4 == 0 and geboorteMaand > 2) { // 29 feb meetellen
 		dagVerschil++;
 	}
 
-	geboorteDagIndex = (dagVerschil + 1) % 7; // + 1 om start op dinsdag te hebben, want 1901 1 jan is op een dinsdag
+	geboorteDagIndex = (dagVerschil + 1) % 7; 
+	// +1, want de telling (01/01/1901) start op dinsdag
 
 	cout << geboorteDagIndex << endl;
 
@@ -299,7 +313,7 @@ int main()
 			cout << "test4" << endl;
 		}
 		else {
-			return 3;
+			return 1;
 		}
 	}
 	
@@ -308,7 +322,7 @@ int main()
 		cout << "\033[31mDit is niet de dag waarop je geboren bent!"
 			 << "(of geen valide dag)\033[0m"
 		 	 << endl;
-		return 3;
+		return 1;
 	}
 	
 
