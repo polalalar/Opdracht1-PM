@@ -331,14 +331,11 @@ int main()
 		return 1;
 	}
 	
-	bool user_oud = false;
-	if (jaarLeeftijd >= 30){
-		user_oud = true;
-	}
+
 	srand(dagVerschil);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
-	if (num2 % 10 == 0){//Reduces the odds of the num1 in the counting problem to be 0
+	if (num2 % 10 == 0){//Door ze om te wisslen wordt de kans lager dat het bovenste getal 0 wordt.
 		int temp = 0;
 		temp = num1;
 		num1 = num2;
@@ -351,21 +348,25 @@ int main()
 	int lower_bound = correct_result - epsilon;
 
 	int user_guess;
+	//Begin stuk van de som
 	cout << "  " << num1 << endl;
 	cout << "  " << num2 << " X" << endl;
 	cout << "  --" << endl;
-	//Not sure if this is what we need to do
+	
+	//reken de tweede + waarde uit. Die is % 10 == 0
 	int addnum2 = num1 * (num2 / 10);
 	addnum2 *= 10;
 	int addnum1 = correct_result - addnum2;
+	//addnum1 kan 0,21,521 ect zijn dus daarvoor moet hij kunnen inspringen
 	if (addnum1 < 1000){ cout << " "; }
 	if (addnum1 < 100){ cout << " "; }
 	if (addnum1 < 10){ cout << " "; }
 	cout << addnum1 << endl;
+	//addnum2 kan niet kleiner zijn dan 100, want 10 * 10 = 100 en num2 wordt dan 100 en num1 0
 	if (addnum2 < 1000){ cout << " "; }
 	cout << addnum2 << " +" << endl;
 
-	if (correct_result < 1000){
+	if (correct_result < 1000){//for how ---- are needed
 		cout << " ---" << endl;
 		cout << " "; //space so the user can fill in the 3 digit cleanly
 	}
@@ -373,6 +374,12 @@ int main()
 		cout << "----" << endl;
 	}
 	cin >> user_guess;
+
+
+	bool user_oud = false;//Wordt gebruikt voor u / jij
+	if (jaarLeeftijd >= 30){
+		user_oud = true;
+	}
 
 	if(user_guess >= lower_bound && user_guess <= upper_bound){//Goed geraden
 		cout << "Je bent op een exacte studie toegelaten!" << endl;
@@ -404,18 +411,18 @@ int main()
 	char answer = 'a';
 	cin >> answer;
 
-	if (user_oud){
+	if (user_oud){//Het antwoord begint zonder persoonlijk voornaamwoord
 		cout << "U ";
 	}else{
 		cout << "Jij ";
 	}
-	if (answer == 'a' or answer == 'A'){
+	if (answer == 'a' or answer == 'A'){//A is het goede antwoord + edge case van a
 		cout << "bent geschikt voor een kunst / literatuur studie op de universiteit!" << endl;
 		return 0;
-	}else{
-		
+	}
+	else{
 		cout << "bent niet geschikt voor een universitaire studie :(" << endl;
-		return 0;
+		return 1;
 	}
 	return 0;
 } //main
