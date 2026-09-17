@@ -237,7 +237,10 @@ int main()
 	int schrikkelJaren = 0;
 
 	jaarVerschil = geboorteJaar - 1901;
-	schrikkelJaren = jaarVerschil / 4;
+	//Eerste volgende schrikkeljaar is in 1904
+	schrikkelJaren = (geboorteJaar - 1904) / 4;
+	//Dus vanaf 1904 is iedere /4 1 schrikeljaar
+
 
 	dagVerschil = schrikkelJaren * 366 + 
 				  (jaarVerschil - schrikkelJaren) * 365 +
