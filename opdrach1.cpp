@@ -27,6 +27,7 @@ int main()
 	cout << "Dit programma is gemaakt door: Jens van der Linden & Thijmen Roosenbrand" << endl;
 	cout << "Dit programma is voor Opdracht 1 van programeer methoden" << endl;
 	cout << "Met dit programma kan je kijken of je geschikt bent voor een universitaire opleiding" << endl;
+
 	////////
 	// Infoblok ofzo
 	////
@@ -86,7 +87,7 @@ int main()
 	// Leeftijdcheck - ouder
 	if (huidigJaar - geboorteJaar > 100) {
 		cout << "Je bent te oud!" << endl;
-		return 2;
+		return 1;
 	} // if
 
 
@@ -114,7 +115,7 @@ int main()
 	if (huidigJaar - geboorteJaar == 100 and 
 	    geboorteMaand < huidigeMaand) {
 		cout << "Je bent te oud!" << endl;
-		return 2;
+		return 1;
 	} // if
 	
 
