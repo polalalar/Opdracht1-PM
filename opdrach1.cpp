@@ -25,7 +25,7 @@ using namespace std;
 int main()
 {
 	cout << "Dit programma is gemaakt door: Jens van der Linden & Thijmen Roosenbrand" << endl;
-	cout << "Dit programma is voor Opdracht 1 van programeer methoden" << endl;
+	cout << "Dit programma is voor Opdracht 1 van programeermethoden" << endl;
 	cout << "Met dit programma kan je kijken of je geschikt bent voor een universitaire opleiding" << endl;
 
 	////////
@@ -237,7 +237,7 @@ int main()
 	int schrikkelJaren = 0;
 
 	jaarVerschil = geboorteJaar - 1901;
-	schrikkelJaren = jaarVerschil / 4;
+	schrikkelJaren = (jaarVerschil / 4);
 
 	dagVerschil = schrikkelJaren * 366 + 
 				  (jaarVerschil - schrikkelJaren) * 365 +
@@ -258,7 +258,7 @@ int main()
 		dagVerschil++;
 	}
 
-	geboorteDagIndex = (dagVerschil + 1) % 7; 
+	geboorteDagIndex = (dagVerschil) % 7; 
 	// +1, want de telling (01/01/1901) start op dinsdag
 
 	cout << geboorteDagIndex << endl;
