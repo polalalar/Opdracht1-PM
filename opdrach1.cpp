@@ -18,62 +18,50 @@ int main()
 	// Datum variabelen
 	int huidigeDag, huidigeMaand, huidigJaar = 0;
 
-	// 2 hulpvariabelen maken
+	// 2 hulpvariabelen voor de tijd
 	tm s;
 	time_t t;
 
-	// Datum variabelen updaten met huidige datum
+	//huidige datum krijgen met behulp can ctime
 	time (&t);
 	s = * localtime (&t);
 	huidigeDag = s.tm_mday;
 	huidigeMaand = s.tm_mon + 1; // telt vanaf 0
 	huidigJaar = s.tm_year + 1900; // telt vanaf 1900
 
-	// Input variabele
 	int geboorteJaar = 0;
 
 	cout << "Wat is je geboortejaar? (xxxx)" << endl << "> ";
 	cin >> geboorteJaar;
 
-	int jaarLeeftijd = huidigJaar - geboorteJaar; //Kan dit blijven of 1 minder iemandd uit 2000 is 26 of 25 jaar oud nooit 27 of 24
+	int jaarLeeftijd = huidigJaar - geboorteJaar; //Kan dit blijven of 1 minder | iemand uit 2000 is 26 of 25 jaar oud nooit 27 of 24
 	int maandLeeftijd = 0;
 	int dagLeeftijd = 0;
 
-	// Jaar input
-
-/*
-	if (geboorteJaar > huidigJaar){
-		cout << "Je bent nog niet geboren!" << endl;
-		return 1;
-	} // if
-
 	// Leeftijdcheck - jonger
-	if (huidigJaar - geboorteJaar < 10) {
+	if (jaarLeeftijd < 10) 
 		cout << "Je bent niet oud genoeg!" << endl;
 		return 1;
-	} // if
+	}
 
 	// Leeftijdcheck - ouder
-	if (huidigJaar - geboorteJaar > 100) {
+	if (jaarLeeftijd > 100) {
 		cout << "Je bent te oud!" << endl;
 		return 1;
-	} // if
+	}
 
-*/
-	// Input variabele
 	int geboorteMaand = 0;
 
-	// Geboortemaand input
 	cout << "Wat is je geboortemaand? (1-12)" << endl << "> ";
 	cin >> geboorteMaand;
 
 	maandLeeftijd = huidigeMaand - geboorteMaand;
-	//Stel het is nu 18 9 2026 en iemand is geboren op 18 10 2000
+	//Stel het is nu 18-9-2026 en iemand is geboren op 18-10-2000
 	// 9 - 10 = -1   < 0 dus:
 	//Die is dan 26 -1 = 25 jaar oud en -1 +12 = 11 maanden
 	if (maandLeeftijd < 0){
 		jaarLeeftijd--;
-		maandLeeftijd += 12; //12 maanden in een jaar
+		maandLeeftijd += 12;
 	}
 
 /*
