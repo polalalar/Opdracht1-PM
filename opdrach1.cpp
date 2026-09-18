@@ -2,25 +2,12 @@
 #include <ctime>
 using namespace std;
 
-
-// Note: add information for other programmers/graders
-//  - e.g. used compiler
-//  - at start of run, display creators
-//   - creators: year of start study, study, student number, name
-//   - code: assignment #, general info about program, date of creation
-//   - may be a little fancy but nothing extreme (only ASCII)
-
-
-
-
-// Programma naam: Opdracht 1 - Programmeermethoden
-// Gemaakt door:Jens van der Linden & Thijmen Roosenbrand
-// Leerling nummer:s5205212 & s5225752
-// Compiled met: g++ 13.3.0
-// Versie 1.0
-// Laatste wijziging op: 17-9-2026
-
-
+// Programma naam: 			Opdracht 1 - Programmeermethoden
+// Gemaakt door: 			Jens van der Linden & Thijmen Roosenbrand
+// Leerling nummers: 		s5205212 & s5225752
+// Compiled met: 			g++ 13.3.0
+// Versie: 					1.0
+// Laatste wijziging op:	17-9-2026
 
 int main()
 {
@@ -28,17 +15,7 @@ int main()
 	cout << "Dit programma is voor Opdracht 1 van programeermethoden" << endl;
 	cout << "Met dit programma kan je kijken of je geschikt bent voor een universitaire opleiding" << endl;
 
-	////////
-	// Infoblok ofzo
-	////
-
-
-	////////
-	// Huidige datum
-	////
-
-	// Note: split lines
-	// Datum variabelen aanmaken
+	// Datum variabelen
 	int huidigeDag, huidigeMaand, huidigJaar = 0;
 
 	// 2 hulpvariabelen maken
@@ -51,21 +28,6 @@ int main()
 	huidigeDag = s.tm_mday;
 	huidigeMaand = s.tm_mon + 1; // telt vanaf 0
 	huidigJaar = s.tm_year + 1900; // telt vanaf 1900
-
-
-	cout << "Het is vandaag de " << huidigeDag << " in de maand " << huidigeMaand << " in het jaar " << huidigJaar << endl;
-
-	////////
-	// Leeftijd check
-	////
-
-
-	// Note: add checks for invalid input (e.g. year 4242 or month -8)
-	//  - years: future, 0 < month < 13
-	//  - check before age checks to ensure right error message
-
-
-
 
 	// Input variabele
 	int geboorteJaar = 0;
@@ -204,37 +166,11 @@ int main()
 
 */
 
-	////////
-	// Leeftijd in jaren/maanden
-	////
-
-
-
-	// // Bereken leeftijd in jaren en maanden
-	// int maandLeeftijd = (huidigJaar - geboorteJaar) * 12
-	// 	+ (huidigeMaand - geboorteMaand)
-	// 	+ (huidigeDag <= geboorteDag);
-	// 	// Check of een volledige maand in dagen al voorbij is
-	// 	// Een boolean wordt hier gezien als een integer door de code
-	// int jaarLeeftijd = maandLeeftijd / 12;
-
-
-
-
-
 	// Display leeftijd in jaren en maanden
 	cout << "Je bent " << 
 			jaarLeeftijd << " jaar en " <<
 			maandLeeftijd << " maanden; " <<
 			(maandLeeftijd+(jaarLeeftijd*12)) << " maanden oud." << endl;
-
-
-
-	////////
-	// Jarig/maandig?
-	////
-
-
 
 	// Maandig (& jarig) check
 	if (geboorteDag == huidigeDag) {
