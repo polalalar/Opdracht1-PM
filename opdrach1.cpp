@@ -35,17 +35,18 @@ int main()
 	cin >> geboorteJaar;
 
 	int jaarLeeftijd = huidigJaar - geboorteJaar; //Kan dit blijven of 1 minder | iemand uit 2000 is 26 of 25 jaar oud nooit 27 of 24
+	cout << jaarLeeftijd << endl;
 	int maandLeeftijd = 0;
 	int dagLeeftijd = 0;
 
 	// Leeftijdcheck - jonger
-	if (jaarLeeftijd < 10) 
+	if (jaarLeeftijd < 10){
 		cout << "Je bent niet oud genoeg!" << endl;
 		return 1;
 	}
 
 	// Leeftijdcheck - ouder
-	if (jaarLeeftijd > 100) {
+	if (jaarLeeftijd > 101){
 		cout << "Je bent te oud!" << endl;
 		return 1;
 	}
@@ -54,6 +55,12 @@ int main()
 
 	cout << "Wat is je geboortemaand? (1-12)" << endl << "> ";
 	cin >> geboorteMaand;
+
+	//Check of de geboorte maand mogelijk is.
+	if (geboorteMaand <= 0 or geboorteMaand >= 13) {
+		cout << "Dit is geen valide maand!" << endl;
+		return 1;
+	}
 
 	maandLeeftijd = huidigeMaand - geboorteMaand;
 	//Stel het is nu 18-9-2026 en iemand is geboren op 18-10-2000
@@ -64,28 +71,19 @@ int main()
 		maandLeeftijd += 12;
 	}
 
-/*
-	// Validiteitcheck
-	if (geboorteMaand <= 0 or geboorteMaand >= 13) {
-		cout << "Dit is geen valide maand!" << 
-		endl;
-	} // if
-
 	// Leeftijdcheck - jonger
-	if (huidigJaar - geboorteJaar == 10 and 
-	    geboorteMaand > huidigeMaand) {
+	if (jaarLeeftijd < 10) {
 		cout << "Je bent niet oud genoeg!" << endl;
 		return 1;
-	} // if
+	}
 
 	// Leeftijdcheck - ouder
-	if (huidigJaar - geboorteJaar == 100 and 
-	    geboorteMaand < huidigeMaand) {
+	if (jaarLeeftijd > 101 || (jaarLeeftijd > 100 && geboorteMaand < huidigeMaand)) {
 		cout << "Je bent te oud!" << endl;
 		return 1;
-	} // if
+	}
 	
-*/
+
 	// Maak een range voor de geboortedag (e.g. 1-31 of 30 of 28/29 in feb)
 	int maxGeboorteDag = 31;
 
@@ -116,49 +114,39 @@ int main()
 	cout << "Wat is je geboortedag? (1-" << maxGeboorteDag << ")" << endl << "> ";
 	cin >> geboorteDag;
 
+	if (geboorteDag <= 0 or geboorteDag > maxGeboorteDag){
+		cout << "Dit is niet een dag die in die maand zit!" << endl;
+		return 1;
+	}
+
 	dagLeeftijd = huidigeDag - geboorteDag;
 	if (dagLeeftijd < 0){
 		maandLeeftijd--;
 		//Er hoeft geen check gemaakt te worden om te kijken hoeveel dagen er dan overblijven. 
 		//Omdat daar toch niks mee wordt gedaan :D.
 
+		//Er is alleen wel een check nodig voor als de maand leeftijd kleiner dan 0 wordt.
+		if (maandLeeftijd < 0){
+			jaarLeeftijd--;
+			maandLeeftijd += 12;
+		}
 	}
 
-/*	
 	// Leeftijdcheck - jonger
-	if (huidigJaar - geboorteJaar == 10 and 
-	    geboorteMaand == huidigeMaand and
-	    geboorteDag > huidigeDag) {
+	if (jaarLeeftijd < 10) {
 		cout << "Je bent niet oud genoeg!" << endl;
 		return 1;
-	} // if
+	}
 
 	// Leeftijdcheck - ouder
-	if (huidigJaar - geboorteJaar == 100 and 
-	    geboorteMaand == huidigeMaand and
-	    geboorteDag <= huidigeDag) {
+	if (jaarLeeftijd > 100) {
 		cout << "Je bent te oud!" << endl;
-		return 2;
-	} // if
-
-	//Check of datum valide is
-	if (geboorteDag <= 0){
-		cout << "Dit is geen valide dag!" << endl;
 		return 1;
-	} // if
-	
-	if (geboorteDag > maxGeboorteDag){
-		cout << "Dit is geen valide dag!" << endl;
-		return 1;
-	} // if
-
-*/
+	}
 
 	// Display leeftijd in jaren en maanden
-	cout << "Je bent " << 
-			jaarLeeftijd << " jaar en " <<
-			maandLeeftijd << " maanden; " <<
-			(maandLeeftijd+(jaarLeeftijd*12)) << " maanden oud." << endl;
+	cout << "Je bent " << jaarLeeftijd << " jaar en " << maandLeeftijd << " maanden; "
+	<< (maandLeeftijd+(jaarLeeftijd*12)) << " maanden oud." << endl;
 
 	// Maandig (& jarig) check
 	if (geboorteDag == huidigeDag) {
