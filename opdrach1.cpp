@@ -188,8 +188,9 @@ int main()
 	//Input variabele
 	char geboorteDagLetter = 'a';
 	// Geboortedag letter input
-	cout << "Op welke dag van de week ben je geboren?" << 
-			" (alleen de eerste letter (kleine letter))" << endl << "> ";
+	cout << "Op welke dag van de week ben je geboren?"; 
+	cout << " (alleen de eerste letter (kleine letter))";
+	cout << endl << "> ";
 	cin >> geboorteDagLetter;
 
 	//2 mogelijkheden:
