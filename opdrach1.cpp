@@ -229,7 +229,7 @@ int main()
 			}
 		}
 	}
-	else{
+	else{//Als het niet een van de letters van de week is
 		cout << "Dat is niet correct!" << endl;
 		return 1;
 	}
@@ -244,12 +244,12 @@ int main()
 		num2 = temp;
 	}
 
-	int correct_result = num1 * num2;
-	int epsilon = correct_result * 0.1;
-	int upper_bound = correct_result + epsilon;
-	int lower_bound = correct_result - epsilon;
+	int goede_resultaat = num1 * num2;
+	int epsilon = goede_resultaat * 0.1;
+	int boven_limiet = goede_resultaat + epsilon;
+	int onder_limiet = goede_resultaat - epsilon;
 
-	int user_guess;
+	int gebruiker_gok;
 	//Begin stuk van de som
 	cout << "  " << num1 << endl;
 	cout << "  " << num2 << " X" << endl;
@@ -258,7 +258,7 @@ int main()
 	//reken de tweede + waarde uit. Die is % 10 == 0
 	int addnum2 = num1 * (num2 / 10);
 	addnum2 *= 10;
-	int addnum1 = correct_result - addnum2;
+	int addnum1 = goede_resultaat - addnum2;
 	//addnum1 kan 0,21,521 ect zijn dus daarvoor moet hij kunnen inspringen
 	if (addnum1 < 1000){ cout << " "; }
 	if (addnum1 < 100){ cout << " "; }
@@ -268,28 +268,27 @@ int main()
 	if (addnum2 < 1000){ cout << " "; }
 	cout << addnum2 << " +" << endl;
 
-	if (correct_result < 1000){//for how ---- are needed
+	if (goede_resultaat < 1000){//Check voor hoeveel - nodig zijn
 		cout << " ---" << endl;
-		cout << " "; //space so the user can fill in the 3 digit cleanly
+		cout << " "; //spatie zodat het resultaat er netjes onder past
 	}
 	else{
 		cout << "----" << endl;
 	}
-	cin >> user_guess;
+	cin >> gebruiker_gok;
 
-
-	bool user_oud = false;//Wordt gebruikt voor u / jij
+	bool gebruiker_oud = false;//Wordt gebruikt voor u / jij
 	if (jaarLeeftijd >= 30){
-		user_oud = true;
+		gebruiker_oud = true;
 	}
 
-	if(user_guess >= lower_bound && user_guess <= upper_bound){//Goed geraden
+	if(gebruiker_gok >= onder_limiet && gebruiker_gok <= boven_limiet){//Goed geraden
 		cout << "Je bent op een exacte studie toegelaten!" << endl;
 		return 0;
 	}
 	else{//Niet goed geraden
 		cout << "Een kunst / literatuur opleiding past beter bij ";
-		if (user_oud){
+		if (gebruiker_oud){//Quiz oud
 			cout << "u" << endl;
 
 			cout << "Wie van de Beatles deelt een naam met meneer Boole?" << endl;
@@ -299,7 +298,7 @@ int main()
 			cout << "D: Paul McCartney" << endl;
 			cout << "> ";
 		}
-		else{
+		else{//Quiz jong
 			cout << "jou" << endl;
 
 			cout << "Welke letter is geen programeer taal?" << endl;
@@ -313,7 +312,7 @@ int main()
 	char answer = 'a';
 	cin >> answer;
 
-	if (user_oud){//Het antwoord begint jij / u
+	if (gebruiker_oud){//Het antwoord begint zonder jij / u
 		cout << "U ";
 	}else{
 		cout << "Jij ";
@@ -326,5 +325,4 @@ int main()
 		cout << "bent niet geschikt voor een universitaire studie :(" << endl;
 		return 1;
 	}
-	return 0;
 } //main
