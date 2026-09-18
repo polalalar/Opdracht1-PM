@@ -52,7 +52,8 @@ int main()
 	huidigeMaand = s.tm_mon + 1; // telt vanaf 0
 	huidigJaar = s.tm_year + 1900; // telt vanaf 1900
 
-	
+
+	cout << "Het is vandaag de " << huidigeDag << " in de maand " << huidigeMaand << " in het jaar " << huidigJaar << endl;
 
 	////////
 	// Leeftijd check
@@ -69,10 +70,16 @@ int main()
 	// Input variabele
 	int geboorteJaar = 0;
 
-	// Jaar input
 	cout << "Wat is je geboortejaar? (xxxx)" << endl << "> ";
 	cin >> geboorteJaar;
 
+	int jaarLeeftijd = huidigJaar - geboorteJaar; //Kan dit blijven of 1 minder iemandd uit 2000 is 26 of 25 jaar oud nooit 27 of 24
+	int maandLeeftijd = 0;
+	int dagLeeftijd = 0;
+
+	// Jaar input
+
+/*
 	if (geboorteJaar > huidigJaar){
 		cout << "Je bent nog niet geboren!" << endl;
 		return 1;
@@ -90,7 +97,7 @@ int main()
 		return 1;
 	} // if
 
-
+*/
 	// Input variabele
 	int geboorteMaand = 0;
 
@@ -98,6 +105,16 @@ int main()
 	cout << "Wat is je geboortemaand? (1-12)" << endl << "> ";
 	cin >> geboorteMaand;
 
+	maandLeeftijd = huidigeMaand - geboorteMaand;
+	//Stel het is nu 18 9 2026 en iemand is geboren op 18 10 2000
+	// 9 - 10 = -1   < 0 dus:
+	//Die is dan 26 -1 = 25 jaar oud en -1 +12 = 11 maanden
+	if (maandLeeftijd < 0){
+		jaarLeeftijd--;
+		maandLeeftijd += 12; //12 maanden in een jaar
+	}
+
+/*
 	// Validiteitcheck
 	if (geboorteMaand <= 0 or geboorteMaand >= 13) {
 		cout << "Dit is geen valide maand!" << 
@@ -118,8 +135,8 @@ int main()
 		return 1;
 	} // if
 	
-
-	// Maak een range voor de geboortedag (e.g. 1-30)
+*/
+	// Maak een range voor de geboortedag (e.g. 1-31 of 30 of 28/29 in feb)
 	int maxGeboorteDag = 31;
 
 	if (
@@ -149,7 +166,14 @@ int main()
 	cout << "Wat is je geboortedag? (1-" << maxGeboorteDag << ")" << endl << "> ";
 	cin >> geboorteDag;
 
-	
+	dagLeeftijd = huidigeDag - geboorteDag;
+	if (dagLeeftijd < 0){
+		maandLeeftijd--;
+		//Zoek het aantal dagen in de vorige maand
+
+	}
+
+/*	
 	// Leeftijdcheck - jonger
 	if (huidigJaar - geboorteJaar == 10 and 
 	    geboorteMaand == huidigeMaand and
@@ -167,7 +191,7 @@ int main()
 	} // if
 
 	//Check of datum valide is
-	if (geboorteDag < 0){
+	if (geboorteDag <= 0){
 		cout << "Dit is geen valide dag!" << endl;
 		return 1;
 	} // if
@@ -177,7 +201,7 @@ int main()
 		return 1;
 	} // if
 
-
+*/
 
 	////////
 	// Leeftijd in jaren/maanden
@@ -185,13 +209,17 @@ int main()
 
 
 
-	// Bereken leeftijd in jaren en maanden
-	int maandLeeftijd = (huidigJaar - geboorteJaar) * 12
-		+ (huidigeMaand - geboorteMaand)
-		+ (huidigeDag <= geboorteDag);
-		// Check of een volledige maand in dagen al voorbij is
-		// Een boolean wordt hier gezien als een integer door de code
-	int jaarLeeftijd = maandLeeftijd / 12;
+	// // Bereken leeftijd in jaren en maanden
+	// int maandLeeftijd = (huidigJaar - geboorteJaar) * 12
+	// 	+ (huidigeMaand - geboorteMaand)
+	// 	+ (huidigeDag <= geboorteDag);
+	// 	// Check of een volledige maand in dagen al voorbij is
+	// 	// Een boolean wordt hier gezien als een integer door de code
+	// int jaarLeeftijd = maandLeeftijd / 12;
+
+
+
+
 
 	// Display leeftijd in jaren en maanden
 	cout << "Je bent " << 
