@@ -2,18 +2,19 @@
 #include <ctime>
 using namespace std;
 
-// Programma naam: 			Opdracht 1 - Programmeermethoden
-// Gemaakt door: 			Jens van der Linden & Thijmen Roosenbrand
-// Leerling nummers: 		s5205212 & s5225752
-// Compiled met: 			g++ 13.3.0
-// Versie: 					1.0
-// Laatste wijziging op:	18-9-2026
+// Programma naam: Opdracht 1 - Programmeermethoden
+// Gemaakt door: Jens van der Linden & Thijmen Rosenbrand
+// Leerling nummers: s5205212 & s5225752
+// Compiled met: g++ 13.3.0
+// Versie: 1.0
+// Laatste wijziging op: 18-9-2026
 
 int main()
 {
-	cout << "Dit programma is gemaakt door: Jens van der Linden & Thijmen Roosenbrand" << endl;
-	cout << "Dit programma is voor Opdracht 1 van programeermethoden" << endl;
-	cout << "Met dit programma kan je kijken of je geschikt bent voor een universitaire opleiding" << endl;
+	cout << "Gemaakt door: Jens van der Linden & Thijmen Rosenbrand" << endl;
+	cout << "Gemaakt voor opdracht 1 van programeermethoden" << endl;
+	cout << "Met dit programma kan je kijken of je geschikt ";
+	cout << "bent voor een universitaire opleiding" << endl;
 
 	// Datum variabelen
 	int huidigeDag, huidigeMaand, huidigJaar = 0;
