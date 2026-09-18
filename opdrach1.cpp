@@ -35,7 +35,6 @@ int main()
 	cin >> geboorteJaar;
 
 	int jaarLeeftijd = huidigJaar - geboorteJaar; //Kan dit blijven of 1 minder | iemand uit 2000 is 26 of 25 jaar oud nooit 27 of 24
-	cout << jaarLeeftijd << endl;
 	int maandLeeftijd = 0;
 	int dagLeeftijd = 0;
 
@@ -57,7 +56,7 @@ int main()
 	cin >> geboorteMaand;
 
 	//Check of de geboorte maand mogelijk is.
-	if (geboorteMaand <= 0 or geboorteMaand >= 13) {
+	if (geboorteMaand <= 0 || geboorteMaand >= 13) {
 		cout << "Dit is geen valide maand!" << endl;
 		return 1;
 	}
@@ -87,9 +86,9 @@ int main()
 	// Maak een range voor de geboortedag (e.g. 1-31 of 30 of 28/29 in feb)
 	int maxGeboorteDag = 31;
 
-	if (geboorteMaand == 4 or // apr
-		geboorteMaand == 6 or // jun
-		geboorteMaand == 9 or // sept
+	if (geboorteMaand == 4 || // apr
+		geboorteMaand == 6 || // jun
+		geboorteMaand == 9 || // sept
 		geboorteMaand == 11)  // nov
 		{
 			maxGeboorteDag = 30;
@@ -104,15 +103,12 @@ int main()
 	}
 	// De andere maanden zijn al 31 en hoeven niet aangepast te worden
 
-
-	// Input variabele
 	int geboorteDag = 0;
 
-	// Geboortedag input
 	cout << "Wat is je geboortedag? (1-" << maxGeboorteDag << ")" << endl << "> ";
 	cin >> geboorteDag;
 
-	if (geboorteDag <= 0 or geboorteDag > maxGeboorteDag){
+	if (geboorteDag <= 0 || geboorteDag > maxGeboorteDag){
 		cout << "Dit is niet een dag die in die maand zit!" << endl;
 		return 1;
 	}
@@ -122,7 +118,6 @@ int main()
 		maandLeeftijd--;
 		//Er hoeft geen check gemaakt te worden om te kijken hoeveel dagen er dan overblijven. 
 		//Omdat daar toch niks mee wordt gedaan :D.
-
 		//Er is alleen wel een check nodig voor als de maand leeftijd kleiner dan 0 wordt.
 		if (maandLeeftijd < 0){
 			jaarLeeftijd--;
@@ -156,16 +151,7 @@ int main()
 		}
 	}
 
-
-
-	////////
-	// Check dag van de week bij geboorte
-	////
-
-	// Variabelen voor geboortedag index
-	int geboorteDagIndex = 0;
-
-	// Bereken dag van de week bij geboorte (0-6)
+	int geboorteDagIndex = 0;// Bereken dag van de week bij geboorte (0-6)
 
 	// 1 januari 1901 is Dinsdag
 	int jaarVerschil = 0;
@@ -195,78 +181,58 @@ int main()
 	}
 
 	geboorteDagIndex = (dagVerschil) % 7; 
-	// +1, want de telling (01/01/1901) start op dinsdag
-
-	cout << geboorteDagIndex << endl;
-
-
 
 	//Input variabele
 	char geboorteDagLetter = 'a';
 	// Geboortedag letter input
 	cout << "Op welke dag van de week ben je geboren?" << 
-			" (alleen de eerste letter)" << endl << "> ";
+			" (alleen de eerste letter (kleine letter))" << endl << "> ";
 	cin >> geboorteDagLetter;
 
-	// Note: split up days for readability
-	//  - both for m/w/v as for di/do/za/zo
+	//2 mogelijkheden:
 
-	// dag = m/w/v & dag klopt met berekende dag
-	if	(geboorteDagLetter == 'm' && geboorteDagIndex == 0) {
-		cout << "abc" << endl;
+	//1. op een Maandag / Woensdag / Vrijdag
+	if ((geboorteDagLetter == 'm' && geboorteDagIndex == 0) ||
+		(geboorteDagLetter == 'w' && geboorteDagIndex == 2) ||
+		(geboorteDagLetter == 'v' && geboorteDagIndex == 4)
+		){
+		cout << "Dat is correct!" << endl;
 	}
-	else if (geboorteDagLetter == 'w' && geboorteDagIndex == 2) {
-		cout << "abcd" << endl;
-	}
-	else if (geboorteDagLetter == 'v' && geboorteDagIndex == 4) {
-		cout << "abcdef" << endl;
-	}
-
-	// dag = di/do/za/zo
-	else if (geboorteDagLetter == 'd' && 
-			(geboorteDagIndex == 1 or geboorteDagIndex == 3)) {
-
-		char geboorteDagLetter2;
-		cout << "Wat is de tweede letter van deze dag?" << endl
-		<< "> " << endl;
+	//2. op een DInsdag / DOnderdag / ZAterdag / ZOndag
+	else if((geboorteDagLetter == 'd' && (geboorteDagIndex == 1 || geboorteDagIndex == 3)) ||
+			(geboorteDagLetter == 'z' && (geboorteDagIndex == 5 || geboorteDagIndex == 6))
+		){
+		char geboorteDagLetter2 = 'a';
+		cout << "Wat is de tweede letter van deze dag?" << endl << "> ";
 		cin >> geboorteDagLetter2;
-		
-		if (geboorteDagLetter2 == 'i' && geboorteDagIndex == 1) {
-			cout << "test1" << endl;
+
+		if (geboorteDagLetter == 'd'){//DInsdag / DOnderdag
+			if ((geboorteDagLetter2 == 'i' && geboorteDagIndex == 1) ||
+				(geboorteDagLetter2 == 'o' && geboorteDagIndex == 3)
+				){
+				cout << "Dat is correct!" << endl;
+			}
+			else{
+				cout << "Dat is niet correct!" << endl;
+				return 1;
+			}
 		}
-		else if (geboorteDagLetter2 == 'o' && geboorteDagIndex == 3) {
-			cout << "test2" << endl;
+		else{//ZAterdag / ZOndag
+			if ((geboorteDagLetter2 == 'a' && geboorteDagIndex == 5) ||
+				(geboorteDagLetter2 == 'o' && geboorteDagIndex == 6)
+				){
+				cout << "Dat is correct!" << endl;
+			}
+			else{
+				cout << "Dat is niet correct!" << endl;
+				return 1;
+			}
 		}
 	}
-
-	else if (geboorteDagLetter == 'z' &&
-			(geboorteDagIndex == 5 or geboorteDagIndex == 6)) {
-
-		char geboorteDagLetter2;
-		cout << "Wat is de tweede letter van deze dag?" << endl
-		<< "> " << endl;
-		cin >> geboorteDagLetter2;
-		
-
-		if (geboorteDagLetter2 == 'a' && geboorteDagIndex == 5) {
-			cout << "test3" << endl;
-		}
-		else  if (geboorteDagLetter2 == 'o' && geboorteDagIndex == 6) {
-			cout << "test4" << endl;
-		}
-		else {
-			return 1;
-		}
-	}
-	
-	// Invalide/incorrecte dag van de week
-	else {
-		cout << "Dit is niet de dag waarop je geboren bent!"
-			 << "(of geen valide dag)"
-		 	 << endl;
+	else{
+		cout << "Dat is niet correct!" << endl;
 		return 1;
 	}
-	
 
 	srand(dagVerschil);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
@@ -347,12 +313,12 @@ int main()
 	char answer = 'a';
 	cin >> answer;
 
-	if (user_oud){//Het antwoord begint zonder persoonlijk voornaamwoord
+	if (user_oud){//Het antwoord begint jij / u
 		cout << "U ";
 	}else{
 		cout << "Jij ";
 	}
-	if (answer == 'a' or answer == 'A'){//A is het goede antwoord + edge case van a
+	if (answer == 'a' || answer == 'A'){//A is het goede antwoord + edge case van a
 		cout << "bent geschikt voor een kunst / literatuur studie op de universiteit!" << endl;
 		return 0;
 	}
