@@ -325,4 +325,4 @@ int main()
 		cout << "bent niet geschikt voor een universitaire studie :(" << endl;
 		return 1;
 	}
-} //main
+}
