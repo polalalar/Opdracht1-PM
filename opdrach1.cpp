@@ -169,7 +169,8 @@ int main()
 	dagLeeftijd = huidigeDag - geboorteDag;
 	if (dagLeeftijd < 0){
 		maandLeeftijd--;
-		//Zoek het aantal dagen in de vorige maand
+		//Er hoeft geen check gemaakt te worden om te kijken hoeveel dagen er dan overblijven. 
+		//Omdat daar toch niks mee wordt gedaan :D.
 
 	}
 
@@ -224,8 +225,8 @@ int main()
 	// Display leeftijd in jaren en maanden
 	cout << "Je bent " << 
 			jaarLeeftijd << " jaar en " <<
-			(maandLeeftijd-(jaarLeeftijd*12)) << " maanden; " <<
-			maandLeeftijd << " maanden oud." << endl;
+			maandLeeftijd << " maanden; " <<
+			(maandLeeftijd+(jaarLeeftijd*12)) << " maanden oud." << endl;
 
 
 
