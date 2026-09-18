@@ -7,7 +7,7 @@ using namespace std;
 // Leerling nummers: 		s5205212 & s5225752
 // Compiled met: 			g++ 13.3.0
 // Versie: 					1.0
-// Laatste wijziging op:	17-9-2026
+// Laatste wijziging op:	18-9-2026
 
 int main()
 {
