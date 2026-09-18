@@ -35,7 +35,7 @@ int main()
 	cout << "Wat is je geboortejaar? (xxxx)" << endl << "> ";
 	cin >> geboorteJaar;
 
-	int jaarLeeftijd = huidigJaar - geboorteJaar; //Kan dit blijven of 1 minder | iemand uit 2000 is 26 of 25 jaar oud nooit 27 of 24
+	int jaarLeeftijd = huidigJaar - geboorteJaar; //Kan dit blijven of 1 minder
 	int maandLeeftijd = 0;
 	int dagLeeftijd = 0;
 
@@ -78,11 +78,11 @@ int main()
 	}
 
 	// Leeftijdcheck - ouder
-	if (jaarLeeftijd > 101 || (jaarLeeftijd > 100 && geboorteMaand < huidigeMaand)) {
+	if (jaarLeeftijd > 101 || (jaarLeeftijd > 100 && 
+		geboorteMaand < huidigeMaand)) {
 		cout << "Je bent te oud!" << endl;
 		return 1;
 	}
-	
 
 	// Maak een range voor de geboortedag (e.g. 1-31 of 30 of 28/29 in feb)
 	int maxGeboorteDag = 31;
@@ -106,7 +106,8 @@ int main()
 
 	int geboorteDag = 0;
 
-	cout << "Wat is je geboortedag? (1-" << maxGeboorteDag << ")" << endl << "> ";
+	cout << "Wat is je geboortedag? (1-";
+	cout << maxGeboorteDag << ")" << endl << "> ";
 	cin >> geboorteDag;
 
 	if (geboorteDag <= 0 || geboorteDag > maxGeboorteDag){
@@ -117,9 +118,9 @@ int main()
 	dagLeeftijd = huidigeDag - geboorteDag;
 	if (dagLeeftijd < 0){
 		maandLeeftijd--;
-		//Er hoeft geen check gemaakt te worden om te kijken hoeveel dagen er dan overblijven. 
+		//Dagen hoeven niet uitgerekend te worden!
 		//Omdat daar toch niks mee wordt gedaan :D.
-		//Er is alleen wel een check nodig voor als de maand leeftijd kleiner dan 0 wordt.
+		//Alleen een check voor de maand.
 		if (maandLeeftijd < 0){
 			jaarLeeftijd--;
 			maandLeeftijd += 12;
@@ -139,8 +140,9 @@ int main()
 	}
 
 	//leeftijd in jaren en maanden
-	cout << "Je bent " << jaarLeeftijd << " jaar en " << maandLeeftijd << " maanden; "
-	<< (maandLeeftijd+(jaarLeeftijd*12)) << " maanden oud." << endl;
+	cout << "Je bent " << jaarLeeftijd << " jaar en ";
+	cout << maandLeeftijd << " maanden; ";
+	cout << (maandLeeftijd+(jaarLeeftijd*12)) << " maanden oud." << endl;
 
 	// Maandig / jarig check
 	if (geboorteDag == huidigeDag) {
@@ -200,8 +202,10 @@ int main()
 		cout << "Dat is correct!" << endl;
 	}
 	//2. op een DInsdag / DOnderdag / ZAterdag / ZOndag
-	else if((geboorteDagLetter == 'd' && (geboorteDagIndex == 1 || geboorteDagIndex == 3)) ||
-			(geboorteDagLetter == 'z' && (geboorteDagIndex == 5 || geboorteDagIndex == 6))
+	else if((geboorteDagLetter == 'd' && 
+		(geboorteDagIndex == 1 || geboorteDagIndex == 3)) ||
+		(geboorteDagLetter == 'z' && 
+		(geboorteDagIndex == 5 || geboorteDagIndex == 6))
 		){
 		char geboorteDagLetter2 = 'a';
 		cout << "Wat is de tweede letter van deze dag?" << endl << "> ";
@@ -238,7 +242,7 @@ int main()
 	srand(dagVerschil);
 	int num1 = (rand() % 90) + 10; // rand % 90 is 0 to 89, +10 --> 10 to 99
 	int num2 = (rand() % 90) + 10;
-	if (num2 % 10 == 0){//Door ze om te wisslen wordt de kans lager dat het bovenste getal 0 wordt.
+	if (num2 % 10 == 0){//Kans lager dat addnum1 0 wordt
 		int temp = 0;
 		temp = num1;
 		num1 = num2;
@@ -265,7 +269,8 @@ int main()
 	if (addnum1 < 100){ cout << " "; }
 	if (addnum1 < 10){ cout << " "; }
 	cout << addnum1 << endl;
-	//addnum2 kan niet kleiner zijn dan 100, want 10 * 10 = 100 en num2 wordt dan 100 en num1 0
+	//addnum2 kan niet kleiner zijn dan 100, 
+	//Want 10 * 10 = 100 en num2 wordt dan 100 en num1 0
 	if (addnum2 < 1000){ cout << " "; }
 	cout << addnum2 << " +" << endl;
 
@@ -283,7 +288,8 @@ int main()
 		gebruiker_oud = true;
 	}
 
-	if(gebruiker_gok >= onder_limiet && gebruiker_gok <= boven_limiet){//Goed geraden
+	if(gebruiker_gok >= onder_limiet && 
+		gebruiker_gok <= boven_limiet){//Goed geraden
 		cout << "Je bent op een exacte studie toegelaten!" << endl;
 		return 0;
 	}
@@ -292,7 +298,8 @@ int main()
 		if (gebruiker_oud){//Quiz oud
 			cout << "u" << endl;
 
-			cout << "Wie van de Beatles deelt een naam met meneer Boole?" << endl;
+			cout << "Wie van de Beatles deelt";
+			cout << "een naam met meneer Boole?" << endl;
 			cout << "A: George Harrison" << endl;
 			cout << "B: John Lennon " << endl;
 			cout << "C: Ringo Starr" << endl;
@@ -318,12 +325,14 @@ int main()
 	}else{
 		cout << "Jij ";
 	}
-	if (answer == 'a' || answer == 'A'){//A is het goede antwoord + edge case van a
-		cout << "bent geschikt voor een kunst / literatuur studie op de universiteit!" << endl;
+	if (answer == 'a' || answer == 'A'){// a/A is goed
+		cout << "bent geschikt voor een kunst /";
+		cout << "literatuur studie op de universiteit!" << endl;
 		return 0;
 	}
 	else{
-		cout << "bent niet geschikt voor een universitaire studie :(" << endl;
+		cout << "bent niet geschikt voor";
+		cout << "een universitaire studie :(" << endl;
 		return 1;
 	}
 }
