@@ -87,14 +87,13 @@ int main()
 	// Maak een range voor de geboortedag (e.g. 1-31 of 30 of 28/29 in feb)
 	int maxGeboorteDag = 31;
 
-	if (
-		geboorteMaand == 4 or // apr
+	if (geboorteMaand == 4 or // apr
 		geboorteMaand == 6 or // jun
 		geboorteMaand == 9 or // sept
-		geboorteMaand == 11   // nov
-		) {
+		geboorteMaand == 11)  // nov
+		{
 			maxGeboorteDag = 30;
-	} // if
+		}
 	else if (geboorteMaand == 2) { // februari
 		if (geboorteJaar % 4 == 0) { // schrikkeljaar, dus 29 dagen
 			maxGeboorteDag = 29;
@@ -102,8 +101,7 @@ int main()
 		else {
 			maxGeboorteDag = 28;
 		}
-	} // else if
-
+	}
 	// De andere maanden zijn al 31 en hoeven niet aangepast te worden
 
 
@@ -144,22 +142,19 @@ int main()
 		return 1;
 	}
 
-	// Display leeftijd in jaren en maanden
+	//leeftijd in jaren en maanden
 	cout << "Je bent " << jaarLeeftijd << " jaar en " << maandLeeftijd << " maanden; "
 	<< (maandLeeftijd+(jaarLeeftijd*12)) << " maanden oud." << endl;
 
-	// Maandig (& jarig) check
+	// Maandig / jarig check
 	if (geboorteDag == huidigeDag) {
-
-		// Jarig check
-		if (geboorteMaand == huidigeMaand) {
+		if (geboorteMaand == huidigeMaand) {//Jarig
 			cout << "Gefeliciteerd, je bent jarig!" << endl;
-		} // if
-
-		else {
+		}
+		else {//Maandig
 			cout << "Gefeliciteerd, je bent maandig!" << endl;
-		} // else
-	} // if
+		}
+	}
 
 
 
