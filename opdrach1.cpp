@@ -30,7 +30,7 @@ int main()
 	cout << "--------------------------------------------------------"
 		 << endl;
 	cout << "Dit programma kijkt of je geschikt bent voor een " << 
-			"universitaire opleiding, door  de volgende stappen:"
+			"universitaire opleiding, met behulp van de volgende stappen:"
 		 << endl
 		 << "1. Leeftijdcheck, checkt of je jong/oud genoeg bent."
 		 << endl
